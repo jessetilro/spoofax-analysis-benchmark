@@ -8,6 +8,7 @@ import org.metaborg.core.project.IProject;
 import org.metaborg.spoofax.core.Spoofax;
 import org.metaborg.spoofax.core.analysis.ISpoofaxAnalysisService;
 import org.metaborg.spoofax.core.analysis.ISpoofaxAnalyzeResult;
+import org.metaborg.spoofax.core.context.constraint.IConstraintContext;
 import org.metaborg.spoofax.core.shell.CLIUtils;
 import org.metaborg.spoofax.core.unit.ISpoofaxInputUnit;
 import org.metaborg.spoofax.core.unit.ISpoofaxParseUnit;
@@ -22,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 @Fork(1)
 @Threads(1)
 @Warmup(iterations = 5)
-@Measurement(iterations = 1)
+@Measurement(iterations = 20)
 @State(Scope.Thread)
 public class AnalysisBenchmark {
     @State(Scope.Thread)
@@ -66,7 +67,10 @@ public class AnalysisBenchmark {
     public void runBenchmark(Blackhole blackhole, AnalysisState state) throws Exception {
         try {
             ISpoofaxAnalyzeResult result;
+            IConstraintContext constraintContext;
             try(IClosableLock lock = state.context.write()) {
+                constraintContext = (IConstraintContext) state.context;
+                constraintContext.clear();
                 result = state.analysisService.analyze(state.parseUnit, state.context);
             }
             blackhole.consume(result);

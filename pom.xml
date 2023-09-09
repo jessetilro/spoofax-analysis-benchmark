@@ -21,6 +21,29 @@
         <args></args>
     </properties>
 
+    <repositories>
+        <repository>
+        <id>metaborg-release-repo</id>
+        <url>https://artifacts.metaborg.org/content/repositories/releases/</url>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+        </repository>
+        <repository>
+        <id>metaborg-snapshot-repo</id>
+        <url>https://artifacts.metaborg.org/content/repositories/snapshots/</url>
+        <releases>
+            <enabled>false</enabled>
+        </releases>
+        <snapshots>
+            <enabled>true</enabled>
+        </snapshots>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
@@ -50,6 +73,8 @@
             <artifactId>slf4j-simple</artifactId>
             <version>1.7.30</version>
         </dependency>
+        
+
     </dependencies>
 
     <build>
@@ -88,7 +113,10 @@
                             <executable>java</executable>
                             <commandlineArgs>
                                 -classpath %classpath
-                                org.openjdk.jmh.Main mb.nabl2.benchmark.AnalysisBenchmark
+                                org.openjdk.jmh.Main
+                                -jvmArgs -Xmx6G
+                                -rff output.csv
+                                mb.nabl2.benchmark.AnalysisBenchmark
                                 ${benchmark.args}
                             </commandlineArgs>
                         </configuration>

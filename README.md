@@ -1,6 +1,6 @@
-# NaBL2 Benchmark
+# Spoofax Analysis Benchmark
 
-__This is a work in progress. The tool is not actually measuring what it is supposed to measure yet.__
+This tool allows perform a runtime performance benchmark of the full static analysis stage resulting from a Spoofax language definition. Part of the [supplementary material of my master thesis](https://github.com/jessetilro/thesis).
 
 Run analysis on example program
 ```shell

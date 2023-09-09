@@ -1,0 +1,2 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99.9%)","Unit","Param: languagePath","Param: programPath"
+"mb.nabl2.benchmark.AnalysisBenchmark.runBenchmark","ss",1,20,1.543188,0.044609,"s/op",/home/jesse/source/thesis/develop,/home/jesse/source/thesis-benchmark-dataset/accounting/accounting.dev
